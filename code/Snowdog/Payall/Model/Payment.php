@@ -49,24 +49,19 @@ class Snowdog_Payall_Model_Payment extends Mage_Payment_Model_Method_Abstract {
     if ($this->_result['txn-id']) {
       $this->_order->getPayment()->setParentTransactionId($this->_result['parent-txn-id']);
     }
-    try {
-      switch ($status) {
-        case self::PAYMENT_STATUS_CASHPAID:
-          $this->_updatePaymentStatusCashpaid();
-          break;
-        case self::PAYMENT_STATUS_SENT:
-          $this->_updatePaymentStatusSent();
-          break;
-        case self::PAYMENT_STATUS_COMPLETED:
-          $this->_updatePaymentStatusCompleted();
-          break;
-        default:
-          // TODO
-          break;
-      }
-
-    } catch (Exception $e) {
-      Mage::logException($e); // TODO
+    switch ($status) {
+      case self::PAYMENT_STATUS_CASHPAID:
+        $this->_updatePaymentStatusCashpaid();
+        break;
+      case self::PAYMENT_STATUS_SENT:
+        $this->_updatePaymentStatusSent();
+        break;
+      case self::PAYMENT_STATUS_COMPLETED:
+        $this->_updatePaymentStatusCompleted();
+        break;
+      default:
+        throw new Exception(Mage::helper('payall')->__('Cannot handle payment status \'%s\'.', $status));
+        break;
     }
   }
 
