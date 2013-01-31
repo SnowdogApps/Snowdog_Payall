@@ -16,6 +16,16 @@ class Snowdog_Payall_PaymentController extends Mage_Core_Controller_Front_Action
     $this->getResponse()->setBody($body);
   }
 
+  public function orderNotifyRequestAction() {
+    $result = Zend_Json::decode($this->getRequest()->getRawBody());
+    // try {
+      Mage::getModel('payall/payment')->orderNotifyRequest($result);
+    // } catch (Exception $e) {
+    //   Mage::logException($e);
+    // }
+  }
+
+
   private function setSession() {
     $this->_session = Mage::getSingleton('checkout/session');
   }

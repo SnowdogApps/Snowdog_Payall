@@ -17,4 +17,8 @@ class Snowdog_Payall_Model_Config {
     return '236b27e71abf7d1606c4a6aface2a457b9f9a17915c9c91329b6aae0'; // TODO
   }
 
+  public function getServerSalt() {
+    return '5bbab3aeb736641454eb01db74aabbaadb9c6ffea3f8da239b87f857'; // TODO
+  }
+
 } // end class

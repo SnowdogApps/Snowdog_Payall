@@ -24,7 +24,7 @@ class Snowdog_Payall_Block_Redirect extends Mage_Core_Block_Abstract {
 
     $html = '<html><body>';
     $html.= $form->toHtml();
-    // $html.= '<script type="text/javascript">document.getElementById("payall_checkout").submit();</script>';
+    $html.= '<script type="text/javascript">document.getElementById("payall_checkout").submit();</script>';
     $html.= '</body></html>';
 
     return $html;
