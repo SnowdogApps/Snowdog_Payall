@@ -1,28 +1,43 @@
 <?php
 class Snowdog_Payall_Model_Config {
 
+  protected function _isSandbox($field) {
+    if ($this->getEnvironment() == Snowdog_Payall_Model_System_Environment::SANDBOX) {
+      return 'sandbox_' . $field;
+    }
+    return $field;
+  }
+
+  public function getEnvironment() {
+    return Mage::getStoreConfig('payment/payall/environment');
+  }
+
   public function getNewPaymentUrl() {
-    return 'https://pay.test.payall.com.gh/new-payment'; // TODO
+    return $this->_configData('new_payment_url', 'payall/settings');
   }
 
   public function getStoreId() {
-    return '3b45c737a0d4d4f8589f3805fb1e4246'; // TODO
+    return $this->_configData('store_id');
+  }
+
+  public function getClientSalt() {
+    return $this->_configData('client_salt');
+  }
+
+  public function getServerSalt() {
+    return $this->_configData('server_salt');
   }
 
   public function getSalt() {
     return '^!du1*be#2mjhelzpfnqo7^^%1dh';
   }
 
-  public function getClientSalt() {
-    return '236b27e71abf7d1606c4a6aface2a457b9f9a17915c9c91329b6aae0'; // TODO
-  }
-
-  public function getServerSalt() {
-    return '5bbab3aeb736641454eb01db74aabbaadb9c6ffea3f8da239b87f857'; // TODO
-  }
-
   public function getErrorLogFilename() {
     return Mage::getStoreConfig('payall/settings/error_log_filename');
+  }
+
+  protected function _configData($field, $group = 'payment/payall') {
+    return Mage::getStoreConfig($group . '/'. $this->_isSandbox($field));
   }
 
 } // end class

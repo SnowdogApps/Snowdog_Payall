@@ -56,10 +56,13 @@
 				<title>Payall</title>
 				<model>payall/payment</model>
         <order_status>1</order_status>
+        <environment>sandbox</environment>
 			</payall>
 		</payment>
 		<payall>
       <settings>
+        <new_payment_url></new_payment_url>
+        <sandbox_new_payment_url>https://pay.test.payall.com.gh/new-payment</sandbox_new_payment_url>
         <error_log_filename>payall-error-log.log</error_log_filename>
       </settings>
     </payall>

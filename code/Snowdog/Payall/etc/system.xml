@@ -45,32 +45,79 @@
               <show_in_website>1</show_in_website>
               <show_in_store>0</show_in_store>
             </order_status>
-            <!-- <environment translate="label">
+            <environment translate="label">
               <label>Test Mode Enabled</label>
               <frontend_type>select</frontend_type>
-              <source_model>payall/environment</source_model>
-              <sort_order>6</sort_order>
+              <source_model>payall/system_environment</source_model>
+              <sort_order>4</sort_order>
               <show_in_default>1</show_in_default>
               <show_in_website>1</show_in_website>
               <show_in_store>1</show_in_store>
-            </environment> -->
+            </environment>
             <header2 translate="label">
               <label>Parameters of production environment</label>
               <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
-              <sort_order>7</sort_order>
+              <sort_order>5</sort_order>
               <show_in_default>1</show_in_default>
               <show_in_website>1</show_in_website>
               <show_in_store>1</show_in_store>
             </header2>
-            <!-- <signature_key translate="label">
-              <label>Second key (MD5)</label>
-              <comment>Symmetrical key for encrypting communication</comment>
+            <store_id translate="label">
+              <label>Store ID</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>6</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </store_id>
+            <client_salt translate="label">
+              <label>Client salt</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>7</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </client_salt>
+            <server_salt translate="label">
+              <label>Server salt</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>8</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </server_salt>
+            <header3 translate="label">
+              <label>Parameters of test environment (Sandbox)</label>
+              <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+              <sort_order>9</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </header3>
+            <sandbox_store_id translate="label">
+              <label>Store ID</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>10</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </sandbox_store_id>
+            <sandbox_client_salt translate="label">
+              <label>Client salt</label>
               <frontend_type>text</frontend_type>
               <sort_order>11</sort_order>
               <show_in_default>1</show_in_default>
               <show_in_website>1</show_in_website>
               <show_in_store>1</show_in_store>
-            </signature_key> -->
+            </sandbox_client_salt>
+            <sandbox_server_salt translate="label">
+              <label>Server salt</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>12</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </sandbox_server_salt>
           </fields>
         </payall>
       </groups>

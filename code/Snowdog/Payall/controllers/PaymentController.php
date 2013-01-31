@@ -37,7 +37,6 @@ class Snowdog_Payall_PaymentController extends Mage_Core_Controller_Front_Action
     $this->renderLayout();
   }
 
-
   private function setSession() {
     $this->_session = Mage::getSingleton('checkout/session');
   }
