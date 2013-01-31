@@ -39,8 +39,7 @@ class Snowdog_Payall_Model_Payment extends Mage_Payment_Model_Method_Abstract {
     if ($this->_verifyChecksum($this->_result['checksum'], $this->_result['salt'])) {
       $this->_updatePaymentStatus($this->_result['status']);
     } else {
-      die('error');
-      // $this->_updatePaymentStatus(self::PAYMENT_STATUS_ERROR); // TODO
+      throw new Exception(Mage::helper('payall')->__('Checksum incorrect'));
     }
   }
 

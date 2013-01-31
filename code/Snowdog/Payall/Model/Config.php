@@ -21,4 +21,8 @@ class Snowdog_Payall_Model_Config {
     return '5bbab3aeb736641454eb01db74aabbaadb9c6ffea3f8da239b87f857'; // TODO
   }
 
+  public function getErrorLogFilename() {
+    return Mage::getStoreConfig('payall/settings/error_log_filename');
+  }
+
 } // end class

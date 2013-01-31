@@ -58,5 +58,10 @@
         <order_status>1</order_status>
 			</payall>
 		</payment>
+		<payall>
+      <settings>
+        <error_log_filename>payall-error-log.log</error_log_filename>
+      </settings>
+    </payall>
 	</default>
 </config>
