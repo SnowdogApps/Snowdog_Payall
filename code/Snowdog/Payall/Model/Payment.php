@@ -43,9 +43,13 @@ class Snowdog_Payall_Model_Payment extends Mage_Payment_Model_Method_Abstract {
     }
   }
 
+  public function getOrder() {
+    return $this->_order;
+  }
+
   protected function _updatePaymentStatus($status) {
     $this->_order->getPayment()->setTransactionId($this->_result['txn-id']);
-    if ($this->_result['txn-id']) {
+    if ($this->_result['parent-txn-id']) {
       $this->_order->getPayment()->setParentTransactionId($this->_result['parent-txn-id']);
     }
     switch ($status) {
@@ -87,6 +91,9 @@ class Snowdog_Payall_Model_Payment extends Mage_Payment_Model_Method_Abstract {
         ->setShouldCloseParentTransaction(true)
         ->setIsTransactionClosed(false)
         ->registerCaptureNotification($this->_order->getGrandTotal());
+
+    Mage::dispatchEvent('payall_payment_completed', array('payment_method' => $this));
+
     $this->_order->save();
 
     // notify customer
