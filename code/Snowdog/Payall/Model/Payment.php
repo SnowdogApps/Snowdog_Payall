@@ -17,6 +17,7 @@ class Snowdog_Payall_Model_Payment extends Mage_Payment_Model_Method_Abstract {
 
   public function newPaymentData(Mage_Sales_Model_Order $order) {
     $this->_order   = $order;
+    $address        = Mage::getModel('sales/order_address')->load($this->_order->getBillingAddressId());
     $orderId        = $this->_order->getRealOrderId();
     $salt           = md5($this->_getConfig()->getSalt() . $orderId . rand() . rand() . microtime() . rand() . rand());
 
@@ -28,7 +29,14 @@ class Snowdog_Payall_Model_Payment extends Mage_Payment_Model_Method_Abstract {
       'currency'  => $this->_order->getOrderCurrencyCode(),
       'title'     => Mage::helper('payall')->__('Order no. %s', $orderId),
       'salt'      => $salt,
-      'checksum'  => $this->_generateChecksum($salt, $this->_getConfig()->getClientSalt())
+      'checksum'  => $this->_generateChecksum($salt, $this->_getConfig()->getClientSalt()),
+      'user'      => array(
+        'firstname'   => $this->_order->getCustomerFirstname(),
+        'middlename'  => $this->_order->getCustomerMiddlename(),
+        'lastname'    => $this->_order->getCustomerLastname(),
+        'email'       => $this->_order->getCustomerEmail(),
+        'phone'       => $address->getTelephone()
+      )
     );
   }
 

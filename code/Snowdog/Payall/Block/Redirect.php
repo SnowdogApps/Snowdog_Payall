@@ -7,7 +7,7 @@ class Snowdog_Payall_Block_Redirect extends Mage_Core_Block_Abstract {
     $payment      = Mage::getModel('payall/payment');
     $form         = new Varien_Data_Form();
     $redirectData = $payment->newPaymentData($this->_order);
-      
+
     $form->setAction($redirectData['url'])
       ->setId('payall_checkout')
       ->setName('payall_checkout')
@@ -21,6 +21,16 @@ class Snowdog_Payall_Block_Redirect extends Mage_Core_Block_Abstract {
     $form->addField('title', 'hidden', array('name' => 'title', 'value' => $redirectData['title']));
     $form->addField('checksum', 'hidden', array('name' => 'checksum', 'value' => $redirectData['checksum']));
     $form->addField('salt', 'hidden', array('name' => 'salt', 'value' => $redirectData['salt']));
+    $form->addField('user-firstname', 'hidden',
+      array('name' => 'user-firstname', 'value' => $redirectData['user']['firstname']));
+    $form->addField('user-middlename', 'hidden',
+      array('name' => 'user-middlename', 'value' => $redirectData['user']['middlename']));
+    $form->addField('user-lastname', 'hidden',
+      array('name' => 'user-lastname', 'value' => $redirectData['user']['lastname']));
+    $form->addField('user-email', 'hidden',
+      array('name' => 'user-email', 'value' => $redirectData['user']['email']));
+    $form->addField('user-phone', 'hidden',
+      array('name' => 'user-phone', 'value' => $redirectData['user']['phone']));
 
     $html = '<html><body>';
     $html.= $form->toHtml();
