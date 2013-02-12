@@ -6,11 +6,11 @@ class Snowdog_Payall_Model_System_Environment {
   public function toOptionArray() {
     return array(
       array(
-        'value' => PayU_Account_Model_Environment::SANDBOX,
+        'value' => Snowdog_Payall_Model_System_Environment::SANDBOX,
         'label' => Mage::helper('payall')->__('Yes')
       ),
       array(
-        'value' => PayU_Account_Model_Environment::PRODUCTION,
+        'value' => Snowdog_Payall_Model_System_Environment::PRODUCTION,
         'label' => Mage::helper('payall')->__('No')
       )
     );
