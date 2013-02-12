@@ -32,22 +32,6 @@
 				</args>
 			</payall>
 		</routers>
-		<layout>
-			<updates>
-				<payu_account module="PayU_Account">
-					<file>payu_account.xml</file>
-				</payu_account>
-			</updates>
-		</layout>
-		<translate>
-			<modules>
-				<PayU_Account>
-					<files>
-						<default>PayU_Account.csv</default>
-					</files>
-				</PayU_Account>
-			</modules>
-		</translate>
 	</frontend>
 	<default>
 		<payment>
