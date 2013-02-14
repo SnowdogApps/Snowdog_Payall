@@ -25,7 +25,7 @@ class Snowdog_Payall_Model_Payment extends Mage_Payment_Model_Method_Abstract {
       'url'       => $this->_getConfig()->getNewPaymentUrl(),
       'store_id'  => $this->_getConfig()->getStoreId(),
       'order_id'  => $orderId,
-      'amount'    => $this->_order->getGrandTotal(),
+      'amount'    => $this->_amountFormat($this->_order->getGrandTotal()),
       'currency'  => $this->_order->getOrderCurrencyCode(),
       'title'     => Mage::helper('payall')->__('Order no. %s', $orderId),
       'salt'      => $salt,
@@ -122,7 +122,7 @@ class Snowdog_Payall_Model_Payment extends Mage_Payment_Model_Method_Abstract {
 
     return hash('sha224', implode(array(
       $this->_order->getRealOrderId(),
-      $this->_order->getGrandTotal(),
+      $this->_amountFormat($this->_order->getGrandTotal()),
       $this->_order->getOrderCurrencyCode(),
       Mage::helper('payall')->__('Order no. %s', $this->_order->getRealOrderId()),
       $publicSalt,
@@ -143,6 +143,10 @@ class Snowdog_Payall_Model_Payment extends Mage_Payment_Model_Method_Abstract {
       $this->_config = Mage::getModel('payall/config');
     }
     return $this->_config;
+  }
+
+  protected function _amountFormat($amount) {
+    return number_format(round($amount, 2, PHP_ROUND_HALF_UP), 2);
   }
 
 } // end class
