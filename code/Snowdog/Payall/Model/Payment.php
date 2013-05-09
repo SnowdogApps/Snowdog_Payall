@@ -35,7 +35,12 @@ class Snowdog_Payall_Model_Payment extends Mage_Payment_Model_Method_Abstract {
         'middlename'  => $this->_order->getCustomerMiddlename(),
         'lastname'    => $this->_order->getCustomerLastname(),
         'email'       => $this->_order->getCustomerEmail(),
-        'phone'       => $address->getTelephone()
+        'phone'       => $address->getTelephone(),
+        'region'      => $address->getRegion(),
+        'postcode'    => $address->getPostcode(),
+        'street'      => $address->getStreet(),
+        'city'        => $address->getCity(),
+        'country'     => $address->getCountry()
       )
     );
   }

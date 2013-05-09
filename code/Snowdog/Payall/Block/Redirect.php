@@ -31,6 +31,16 @@ class Snowdog_Payall_Block_Redirect extends Mage_Core_Block_Abstract {
       array('name' => 'user-email', 'value' => $redirectData['user']['email']));
     $form->addField('user-phone', 'hidden',
       array('name' => 'user-phone', 'value' => $redirectData['user']['phone']));
+    $form->addField('user-region', 'hidden',
+      array('name' => 'user-region', 'value' => $redirectData['user']['region']));
+    $form->addField('user-postcode', 'hidden',
+      array('name' => 'user-postcode', 'value' => $redirectData['user']['postcode']));
+    $form->addField('user-street', 'hidden',
+      array('name' => 'user-street', 'value' => implode(', ', $redirectData['user']['street'])));
+    $form->addField('user-city', 'hidden',
+      array('name' => 'user-city', 'value' => $redirectData['user']['city']));
+    $form->addField('user-country', 'hidden',
+      array('name' => 'user-country', 'value' => $redirectData['user']['country']));
 
     $html = '<html><body>';
     $html.= $form->toHtml();
