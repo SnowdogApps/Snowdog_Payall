@@ -109,15 +109,8 @@ class Snowdog_Payall_Model_Payment extends Mage_Payment_Model_Method_Abstract {
 
     $this->_order->save();
 
-    // notify customer
-    $invoice = $payment->getCreatedInvoice();
-    if ($invoice && !$this->_order->getEmailSent()) {
-      $this->_order->sendNewOrderEmail()->addStatusHistoryComment(
-        Mage::helper('payall')->__('Notified customer about invoice #%s.', $invoice->getIncrementId())
-      )
-      ->setIsCustomerNotified(true)
-      ->save();
-    }
+	 // create invoice and notify customer
+	 Mage::getModel('sales/order_invoice_api')->create($this->_order->getIncrementId(), array(), null, true);
   }
 
   protected function _generateChecksum($publicSalt, $privateSalt) {
