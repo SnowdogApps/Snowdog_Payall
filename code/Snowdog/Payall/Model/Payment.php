@@ -62,7 +62,7 @@ class Snowdog_Payall_Model_Payment extends Mage_Payment_Model_Method_Abstract {
 
   protected function _updatePaymentStatus($status) {
     $this->_order->getPayment()->setTransactionId($this->_result['txn-id']);
-    if ($this->_result['parent-txn-id']) {
+    if (isset($this->_result['parent-txn-id'])) {
       $this->_order->getPayment()->setParentTransactionId($this->_result['parent-txn-id']);
     }
     switch ($status) {
