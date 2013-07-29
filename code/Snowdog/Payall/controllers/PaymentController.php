@@ -18,27 +18,19 @@ class Snowdog_Payall_PaymentController extends Mage_Core_Controller_Front_Action
 
   public function orderNotifyRequestAction() {
     try {
-      $result = Zend_Json::decode($this->getRequest()->getRawBody());
+      $result = $this->getRequest()->getPost();
       Mage::getModel('payall/payment')->orderNotifyRequest($result);
-      $responseBody = Zend_Json::encode(array('result' => 'OK'));
-    } catch (Zend_Json_Exception $e) {
-      Mage::log(array(
-          'message' => $e->getMessage(),
-          'request' => $this->getRequest()->getRawBody()
-        ), Zend_Log::DEBUG, Mage::getModel('payall/config')->getErrorLogFilename()
-      );
-      $responseBody = Zend_Json::encode(array('result' => 'Failed'));
+      $responseBody = 'OK';
     } catch (Exception $e) {
       Mage::log(array(
           'message' => $e->getMessage(),
           'request' => $result
         ), Zend_Log::ERR, Mage::getModel('payall/config')->getErrorLogFilename()
       );
-      $responseBody = Zend_Json::encode(array('result' => 'Failed'));
+      $responseBody = 'Failed';
     }
 
     $this->getResponse()
-      ->setHeader('Content-type', 'application/json; charset=UTF-8')
       ->setBody($responseBody);
     $this->loadLayout(false);
     $this->renderLayout();
