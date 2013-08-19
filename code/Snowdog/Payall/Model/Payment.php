@@ -144,7 +144,7 @@ class Snowdog_Payall_Model_Payment extends Mage_Payment_Model_Method_Abstract {
   }
 
   protected function _amountFormat($amount) {
-    return number_format(round($amount, 2, PHP_ROUND_HALF_UP), 2);
+    return number_format(round($amount, 2, PHP_ROUND_HALF_UP), 2, '.', '');
   }
 
 } // end class
