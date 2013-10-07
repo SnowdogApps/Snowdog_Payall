@@ -45,7 +45,7 @@
 		</payment>
 		<payall>
       <settings>
-        <new_payment_url></new_payment_url>
+        <new_payment_url>https://pay.payall.com.gh/new-payment</new_payment_url>
         <sandbox_new_payment_url>https://test.pay.ghana.payall.ch/new-payment</sandbox_new_payment_url>
         <error_log_filename>payall-error-log.log</error_log_filename>
       </settings>
