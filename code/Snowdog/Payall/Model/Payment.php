@@ -90,22 +90,12 @@ class Snowdog_Payall_Model_Payment extends Mage_Payment_Model_Method_Abstract {
   }
 
   protected function _updatePaymentStatusSent() {
-    $this->_order->getPayment()
-        ->setPreparedMessage(Mage::helper('payall')->__('Transfer was sent.'))
-        ->setIsTransactionClosed(false)
-        ->registerVoidNotification();
-    $this->_order->save();
-  }
-
-  protected function _updatePaymentStatusCompleted() {
     $payment = $this->_order->getPayment();
 
-    $payment->setPreparedMessage('')
-        ->setShouldCloseParentTransaction(true)
-        ->setIsTransactionClosed(false)
-        ->registerCaptureNotification($this->_order->getGrandTotal());
-
-    Mage::dispatchEvent('payall_payment_completed', array('payment_method' => $this));
+    $payment
+      ->setPreparedMessage(Mage::helper('payall')->__('Transfer was sent/capture.'))
+      ->setIsTransactionClosed(false)
+      ->registerCaptureNotification($this->_order->getGrandTotal());
 
     $this->_order->save();
 
@@ -119,6 +109,20 @@ class Snowdog_Payall_Model_Payment extends Mage_Payment_Model_Method_Abstract {
         ->setIsCustomerNotified(true)
         ->save();
     }
+  }
+
+  protected function _updatePaymentStatusCompleted() {
+    $payment = $this->_order->getPayment();
+
+    $payment
+      ->setPreparedMessage('Transfer conpleted')
+      ->setShouldCloseParentTransaction(true)
+      ->setIsTransactionClosed(false)
+      ->registerVoidNotification();
+
+    Mage::dispatchEvent('payall_payment_completed', array('payment_method' => $this));
+
+    $this->_order->save();
   }
 
   protected function _generateChecksum($publicSalt, $privateSalt) {
