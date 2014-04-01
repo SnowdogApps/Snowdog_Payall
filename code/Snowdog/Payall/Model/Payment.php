@@ -30,6 +30,7 @@ class Snowdog_Payall_Model_Payment extends Mage_Payment_Model_Method_Abstract {
       'title'     => Mage::helper('payall')->__('Order no. %s', $orderId),
       'salt'      => $salt,
       'checksum'  => $this->_generateChecksum($salt, $this->_getConfig()->getClientSalt()),
+	  'ptype'=> 'payall',
       'user'      => array(
         'firstname'   => $this->_order->getCustomerFirstname(),
         'middlename'  => $this->_order->getCustomerMiddlename(),

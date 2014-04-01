@@ -21,6 +21,8 @@ class Snowdog_Payall_Block_Redirect extends Mage_Core_Block_Abstract {
     $form->addField('title', 'hidden', array('name' => 'title', 'value' => $redirectData['title']));
     $form->addField('checksum', 'hidden', array('name' => 'checksum', 'value' => $redirectData['checksum']));
     $form->addField('salt', 'hidden', array('name' => 'salt', 'value' => $redirectData['salt']));
+	$form->addField('ptype', 'hidden', array('name' => 'ptype', 'value' => $redirectData['ptype']));
+
     $form->addField('user-firstname', 'hidden',
       array('name' => 'user-firstname', 'value' => $redirectData['user']['firstname']));
     $form->addField('user-middlename', 'hidden',
